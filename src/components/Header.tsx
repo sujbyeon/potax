@@ -215,7 +215,7 @@ const Header = () => {
                 className="gold-gradient text-primary-foreground rounded-lg w-full mt-3 font-bold border-0"
                 onClick={() => scrollTo("contact")}
               >
-                무료 상담
+                상담 신청
               </Button>
             </nav>
           </div>
