@@ -63,6 +63,12 @@ const scrollTo = (id: string) => {
 };
 
 const Index = () => {
+  const [heroRef, heroIn] = useInView(0.1);
+  const [profileRef, profileIn] = useInView(0.1);
+  const [servicesRef, servicesIn] = useInView(0.05);
+  const [casesRef, casesIn] = useInView(0.05);
+  const [guideRef, guideIn] = useInView(0.1);
+  const [contactRef, contactIn] = useInView(0.05);
 
   return (
     <div className="min-h-screen bg-background">
