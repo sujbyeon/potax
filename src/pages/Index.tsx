@@ -385,7 +385,7 @@ const Index = () => {
                   href="https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EC%84%A0%EB%A6%89%EB%A1%9C121%EA%B8%B8%2015"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-[#fee500] text-[#191919] rounded-lg px-4 py-2 font-bold text-xs hover:opacity-90 transition-opacity"
+                  className="inline-block bg-[#fee500] text-[#191919] rounded-lg px-3 py-1.5 font-bold text-[10px] hover:opacity-90 transition-opacity"
                 >
                   카카오맵
                 </a>
