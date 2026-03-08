@@ -116,8 +116,9 @@ const Index = () => {
                 </h1>
               </div>
 
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-lg">
-                현장에서 단련된 세무 전문가만이 줄 수 있는 조언이 있습니다. 스타트업부터 대기업 그룹사까지, 복잡한 세무 이슈·세무조사 대응·부동산 상속증여 등 다양한 현장을 누빈 전문가가 직접 함께합니다. 수천 건의 실전 경험이 쌓은 신뢰를 바탕으로, 세무회계 평온이 든든한 파트너가 되겠습니다.
+              <p className="text-base sm:text-lg leading-relaxed max-w-lg">
+                <span className="text-foreground font-semibold">현장에서 단련된 세무 전문가만이 줄 수 있는 조언이 있습니다.</span>{" "}
+                <span className="text-muted-foreground">스타트업부터 대기업 그룹사까지, 복잡한 세무 이슈·세무조사 대응·부동산 상속증여 등 다양한 현장을 누빈 전문가가 직접 함께합니다. 수천 건의 실전 경험이 쌓은 신뢰를 바탕으로, 세무회계 평온이 든든한 파트너가 되겠습니다.</span>
               </p>
 
               <div className="flex flex-wrap gap-3">
