@@ -429,7 +429,7 @@ const Index = () => {
               <div key={label} className="glass-surface rounded-2xl p-4 text-center">
                 <p className="text-xl mb-1">{icon}</p>
                 <p className="text-[10px] text-muted-foreground">{label}</p>
-                <p className="text-xs text-foreground font-medium mt-1">{val}</p>
+                <p className="text-xs text-foreground font-medium mt-1 whitespace-pre-line">{val}</p>
               </div>
             ))}
           </div>
