@@ -131,6 +131,7 @@ const Header = () => {
                 ) : (
                   <a
                     href={item.href}
+                    {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="text-[13px] font-medium text-foreground/80 hover:text-primary px-3 py-2 rounded-lg transition-colors"
                   >
                     {item.label}
