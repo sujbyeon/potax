@@ -107,7 +107,7 @@ const Index = () => {
             <div className={`fade-up ${heroIn ? "visible" : ""} space-y-8`}>
               <div className="inline-flex items-center gap-2 bg-secondary/50 border border-border rounded-full px-4 py-2 text-xs text-muted-foreground">
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                강남구청역 도보 10분 거리
+                평온한 세법 가이드
               </div>
 
               <div>
@@ -384,7 +384,7 @@ const Index = () => {
             {[
               ["📞", "대표 전화", "02-866-5006"],
               ["📱", "핸드폰", "010-9450-7458"],
-              ["📍", "위치", "강남구청역 도보 10분"],
+              ["📍", "위치", "평온한 세법 가이드"],
             ].map(([icon, label, val]) => (
               <div key={label} className="glass-surface rounded-2xl p-4 text-center">
                 <p className="text-xl mb-1">{icon}</p>
@@ -400,7 +400,7 @@ const Index = () => {
       <footer className="bg-navy-deep border-t border-border py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
           <p className="text-xs text-muted-foreground">
-            세무회계 평온 | 대표세무사 김성열 | 강남구청역 인근
+            세무회계 평온 | 대표세무사 김성열 | 평온한 세법 가이드
           </p>
           <p className="text-xs text-muted-foreground">
             T. 02-866-5006 | M. 010-9450-7458
