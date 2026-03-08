@@ -406,7 +406,7 @@ const Index = () => {
             T. 02-866-5006 | M. 010-9450-7458
           </p>
           <p className="text-xs text-muted-foreground/50">
-            © 2025 세무회계평온. All rights reserved.
+            © 2025 세무회계 평온. All rights reserved.
           </p>
         </div>
       </footer>
