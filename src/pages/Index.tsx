@@ -213,8 +213,8 @@ const Index = () => {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className={`fade-up ${profileIn ? "visible" : ""}`}>
               <div className="bg-card border border-border rounded-3xl p-10 text-center">
-                <div className="w-28 h-28 rounded-full bg-secondary mx-auto mb-6 flex items-center justify-center">
-                  <span className="text-5xl">👨‍💼</span>
+                <div className="w-28 h-28 rounded-full bg-secondary mx-auto mb-6 overflow-hidden">
+                  <img src={profileImg} alt="김성열 세무사" className="w-full h-full object-cover" />
                 </div>
                 <h3 className="font-serif font-bold text-2xl text-foreground mb-1">김성열 세무사</h3>
                 <p className="text-sm text-muted-foreground mb-4">세무회계평온 대표세무사</p>
