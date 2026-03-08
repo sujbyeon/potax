@@ -337,20 +337,20 @@ const Index = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">상담 신청</h2>
             <div className="accent-bar mx-auto mb-6" />
             <p className="text-muted-foreground">
-              전화 또는 문자로 편하게 상담을 신청하세요.
+              전화, 문자 또는 방문으로 편하게 상담을 신청하세요.
             </p>
           </div>
 
-          <div className={`fade-up delay-1 ${contactIn ? "visible" : ""} grid sm:grid-cols-2 gap-4 mb-8`}>
+          <div className={`fade-up delay-1 ${contactIn ? "visible" : ""} grid sm:grid-cols-3 gap-4`}>
             <a
-              href="tel:010-9450-7458"
+              href="tel:02-866-5006"
               className="glass-surface rounded-2xl p-8 text-center hover:border-primary/40 border border-transparent transition-all hover:-translate-y-1 block"
             >
               <span className="text-4xl block mb-3">📞</span>
               <h3 className="font-bold text-lg text-foreground mb-1">전화 상담</h3>
               <p className="text-sm text-muted-foreground mb-4">바로 전화 연결됩니다</p>
               <span className="inline-block gold-gradient text-primary-foreground border-0 rounded-xl px-6 py-3 font-bold text-sm">
-                010-9450-7458
+                02-866-5006
               </span>
             </a>
 
@@ -365,20 +365,15 @@ const Index = () => {
                 010-9450-7458
               </span>
             </a>
-          </div>
 
-          <div className={`fade-up delay-2 ${contactIn ? "visible" : ""} grid grid-cols-3 gap-3`}>
-            {[
-              ["📞", "대표 전화", "02-866-5006"],
-              ["📱", "핸드폰", "010-9450-7458"],
-              ["📍", "위치", "서울 강남구 선릉로121길 15, 4층"],
-            ].map(([icon, label, val]) => (
-              <div key={label} className="glass-surface rounded-2xl p-4 text-center">
-                <p className="text-xl mb-1">{icon}</p>
-                <p className="text-[10px] text-muted-foreground">{label}</p>
-                <p className="text-xs text-foreground font-medium mt-1 whitespace-pre-line">{val}</p>
-              </div>
-            ))}
+            <div className="glass-surface rounded-2xl p-8 text-center border border-transparent">
+              <span className="text-4xl block mb-3">🏢</span>
+              <h3 className="font-bold text-lg text-foreground mb-1">방문 상담</h3>
+              <p className="text-sm text-muted-foreground mb-4">사무실로 방문해주세요</p>
+              <span className="inline-block bg-secondary text-foreground border border-border rounded-xl px-5 py-3 font-bold text-xs">
+                서울 강남구 선릉로121길 15, 4층
+              </span>
+            </div>
           </div>
         </div>
       </section>
