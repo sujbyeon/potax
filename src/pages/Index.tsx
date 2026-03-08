@@ -384,7 +384,7 @@ const Index = () => {
             {[
               ["📞", "대표 전화", "02-866-5006"],
               ["📱", "핸드폰", "010-9450-7458"],
-              ["📍", "위치", "강남구청역 도보 10분"],
+              ["📍", "위치", "평온한 세법 가이드"],
             ].map(([icon, label, val]) => (
               <div key={label} className="glass-surface rounded-2xl p-4 text-center">
                 <p className="text-xl mb-1">{icon}</p>
