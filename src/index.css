@@ -88,7 +88,7 @@
   }
   .service-card:hover {
     @apply -translate-y-2;
-    box-shadow: 0 25px 60px hsla(200, 95%, 5%, 0.5);
+    box-shadow: 0 25px 60px hsla(212, 90%, 5%, 0.5);
   }
 
   /* Gold gradient */
