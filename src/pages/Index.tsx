@@ -1,6 +1,7 @@
-import { useEffect, useRef, RefObject, useState } from "react";
+import { useRef } from "react";
 import Header from "@/components/Header";
 import profileImg from "@/assets/profile-kimsy.png";
+import { motion, useInView } from "framer-motion";
 
 const SERVICES = [
   { icon: "📋", title: "종합소득세 신고", desc: "개인사업자, 프리랜서, 임대소득자 등 모든 종합소득세 신고를 정확하고 신속하게 처리합니다.", tag: "개인" },
@@ -34,7 +35,6 @@ const CASES = [
   "정부 중앙부처 장관급 청문회 대응자료 검토",
   "외국납부세액공제관련 경정청구",
   "승계조합원 청산금 양도소득세",
-  
 ];
 
 const BLOG_CATEGORIES = [
@@ -45,102 +45,127 @@ const BLOG_CATEGORIES = [
   { icon: "⚖️", title: "판례 및 실무 가이드", href: "https://blog.naver.com/PostList.naver?blogId=po-tax&from=postList&categoryNo=14", desc: "주요 세법 판례와 실무 적용 사례 분석" },
 ];
 
-function useInView(threshold = 0.15): [RefObject<HTMLDivElement>, boolean] {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return [ref, inView];
-}
-
 const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
 
-const Index = () => {
-  const [heroRef, heroIn] = useInView(0.1);
-  const [profileRef, profileIn] = useInView(0.1);
-  const [servicesRef, servicesIn] = useInView(0.05);
-  const [casesRef, casesIn] = useInView(0.05);
-  const [guideRef, guideIn] = useInView(0.1);
-  const [contactRef, contactIn] = useInView(0.05);
-
+// Reusable animated section wrapper
+const FadeSection = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <div className="min-h-screen bg-background">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      transition={{ duration: 0.7, delay, ease: [0.22, 0.68, 0, 1.1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+const Index = () => {
+  return (
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <Header />
 
-      {/* 1. HERO - 첫 페이지 */}
-      <section
-        id="home"
-        ref={heroRef}
-        className="relative min-h-screen flex items-center navy-gradient overflow-hidden"
-      >
+      {/* 1. HERO */}
+      <section id="home" className="relative min-h-screen flex items-center navy-gradient overflow-hidden">
+        {/* Enhanced background effects */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-[10%] right-[15%] w-72 h-72 rounded-full bg-primary/5 blur-3xl" />
-          <div className="absolute bottom-[20%] left-[10%] w-96 h-96 rounded-full bg-primary/3 blur-3xl" />
-          {[...Array(6)].map((_, i) => (
-            <div
+          <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-primary/[0.04] blur-[100px]" />
+          <div className="absolute bottom-[15%] left-[5%] w-[600px] h-[600px] rounded-full bg-primary/[0.03] blur-[120px]" />
+          <div className="absolute top-[40%] left-[50%] w-[300px] h-[300px] rounded-full bg-gold-glow/[0.02] blur-[80px]" />
+          {[...Array(12)].map((_, i) => (
+            <motion.div
               key={i}
               className="absolute rounded-full bg-primary/10"
               style={{
-                width: 4 + Math.random() * 4,
-                height: 4 + Math.random() * 4,
-                top: `${15 + Math.random() * 70}%`,
-                left: `${10 + Math.random() * 80}%`,
-                animation: `float ${3 + Math.random() * 3}s ease-in-out infinite`,
-                animationDelay: `${i * 0.5}s`,
+                width: 3 + Math.random() * 5,
+                height: 3 + Math.random() * 5,
+                top: `${10 + Math.random() * 80}%`,
+                left: `${5 + Math.random() * 90}%`,
+              }}
+              animate={{
+                y: [0, -15, 0],
+                opacity: [0.3, 0.8, 0.3],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 4,
+                repeat: Infinity,
+                delay: i * 0.4,
+                ease: "easeInOut",
               }}
             />
           ))}
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 pb-16 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className={`fade-up ${heroIn ? "visible" : ""} space-y-8`}>
-              <div className="inline-flex items-center gap-2 bg-secondary/50 border border-border rounded-full px-4 py-2 text-xs text-muted-foreground">
+            <div className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="inline-flex items-center gap-2 bg-secondary/50 border border-border rounded-full px-4 py-2 text-xs text-muted-foreground backdrop-blur-sm"
+              >
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 세무회계 평온
-              </div>
+              </motion.div>
 
-              <div>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 0.68, 0, 1.1] }}
+              >
+                <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold leading-[1.15]">
                   <span className="text-foreground">평온한 세법 가이드,</span>
                   <br />
                   <span className="text-gold-gradient">세무회계 평온</span>
                 </h1>
-              </div>
+              </motion.div>
 
-              <p className="text-base sm:text-lg leading-relaxed max-w-lg">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.6 }}
+                className="text-base sm:text-lg leading-relaxed max-w-lg"
+              >
                 <span className="text-foreground font-semibold">현장에서 단련된 세무 전문가만이 줄 수 있는 조언이 있습니다.</span>{" "}
                 <span className="text-muted-foreground">스타트업부터 대기업 그룹사까지, 복잡한 세무 이슈·세무조사 대응·부동산 상속증여 등 다양한 현장을 누빈 전문가가 직접 함께합니다. 수천 건의 실전 경험이 쌓은 신뢰를 바탕으로, 세무회계 평온이 든든한 파트너가 되겠습니다.</span>
-              </p>
+              </motion.p>
 
-              <div className="flex flex-wrap gap-3">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.8 }}
+                className="flex flex-wrap gap-3"
+              >
                 <button
                   onClick={() => scrollTo("contact")}
-                  className="gold-gradient text-primary-foreground border-0 rounded-xl px-7 py-4 cursor-pointer font-bold text-sm hover:opacity-90 transition-opacity"
+                  className="gold-gradient text-primary-foreground border-0 rounded-xl px-7 py-4 cursor-pointer font-bold text-sm hover:opacity-90 transition-all hover:shadow-[0_8px_30px_hsla(20,23%,53%,0.3)] hover:-translate-y-0.5"
                 >
                   상담 신청하기
                 </button>
                 <button
                   onClick={() => scrollTo("profile")}
-                  className="bg-transparent text-foreground border border-border rounded-xl px-6 py-4 cursor-pointer text-sm hover:border-primary/40 transition-colors"
+                  className="bg-transparent text-foreground border border-border rounded-xl px-6 py-4 cursor-pointer text-sm hover:border-primary/40 transition-all hover:bg-secondary/30"
                 >
                   대표세무사 소개 →
                 </button>
-              </div>
+              </motion.div>
             </div>
 
-            <div className={`fade-up delay-2 ${heroIn ? "visible" : ""}`}>
-              <div className="glass-surface rounded-3xl p-8 space-y-6 animate-float">
-                <div className="flex items-center gap-4 pb-4 border-b border-border">
-                  <span className="text-4xl">⚖️</span>
+            <motion.div
+              initial={{ opacity: 0, y: 40, rotateY: -5 }}
+              animate={{ opacity: 1, y: 0, rotateY: 0 }}
+              transition={{ duration: 1, delay: 0.6, ease: [0.22, 0.68, 0, 1.1] }}
+            >
+              <div className="glass-surface rounded-3xl p-8 space-y-6 animate-float hero-card-glow">
+                <div className="flex items-center gap-4 pb-4 border-b border-border/50">
+                  <div className="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center text-2xl">⚖️</div>
                   <div>
                     <p className="font-serif font-bold text-lg text-foreground">세무회계 평온</p>
                     <p className="text-xs text-muted-foreground">김성열 대표세무사</p>
@@ -148,40 +173,61 @@ const Index = () => {
                 </div>
 
                 <div className="space-y-3">
-                  {CAREER.map((c) => (
-                    <div key={c.org} className="flex items-center gap-3">
+                  {CAREER.map((c, i) => (
+                    <motion.div
+                      key={c.org}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.8 + i * 0.1, duration: 0.5 }}
+                      className="flex items-center gap-3"
+                    >
                       <span className="text-[10px] tracking-wider text-primary font-semibold bg-primary/10 px-2.5 py-1 rounded-full min-w-[28px] text-center">
                         {c.period}
                       </span>
                       <span className="text-sm text-foreground">{c.org}</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
 
-                <div className="flex items-center gap-3 bg-secondary/30 rounded-xl p-4">
-                  <span className="text-xl">📞</span>
+                <a href="tel:02-866-5006" className="flex items-center gap-3 bg-secondary/30 rounded-xl p-4 hover:bg-secondary/50 transition-colors group">
+                  <span className="text-xl group-hover:scale-110 transition-transform">📞</span>
                   <div>
                     <p className="text-xs text-muted-foreground">대표 전화</p>
                     <p className="font-bold text-sm text-foreground">02-866-5006</p>
                   </div>
-                </div>
+                </a>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-1.5">
+            <div className="w-1.5 h-2.5 rounded-full bg-primary/60" />
+          </div>
+        </motion.div>
       </section>
 
-      {/* 2. PROFILE - 김성열 대표세무사 소개 */}
-      <section id="profile" ref={profileRef} className="py-20 lg:py-28 bg-secondary/30">
+      {/* 2. PROFILE */}
+      <section id="profile" className="py-24 lg:py-32 bg-secondary/30 relative">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className={`fade-up ${profileIn ? "visible" : ""}`}>
-              <div className="bg-card border border-border rounded-3xl p-10 text-center">
-                <div className="w-28 h-28 rounded-full bg-secondary mx-auto mb-6 overflow-hidden">
+            <FadeSection>
+              <div className="bg-card border border-border rounded-3xl p-10 text-center relative overflow-hidden group">
+                <div className="absolute inset-0 gold-gradient opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500" />
+                <div className="w-32 h-32 rounded-full bg-secondary mx-auto mb-6 overflow-hidden ring-4 ring-primary/10 ring-offset-4 ring-offset-card">
                   <img src={profileImg} alt="김성열 세무사" className="w-full h-full object-cover" />
                 </div>
                 <h3 className="font-serif font-bold text-2xl text-foreground mb-1">김성열 세무사</h3>
-                <p className="text-sm text-muted-foreground mb-4">세무회계 평온 대표세무사</p>
+                <p className="text-sm text-muted-foreground mb-5">세무회계 평온 대표세무사</p>
                 <div className="flex flex-wrap justify-center gap-2">
                   {["한국과학영재고", "연세대학교", "前 좋은벗세무회계", "前 세무법인 호연"].map((t) => (
                     <span
@@ -193,9 +239,9 @@ const Index = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </FadeSection>
 
-            <div className={`fade-up delay-2 ${profileIn ? "visible" : ""} space-y-6`}>
+            <FadeSection delay={0.15} className="space-y-6">
               <p className="text-xs tracking-[3px] text-primary font-medium">ABOUT</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground leading-tight">
                 김성열 대표세무사
@@ -209,23 +255,22 @@ const Index = () => {
               </p>
 
               <div className="space-y-3">
-                {CAREER.map(({ period, org }) => (
-                  <div
-                    key={org}
-                    className="flex items-center gap-3 bg-card border border-border rounded-xl px-4 py-3"
-                  >
-                    <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">
-                      {period}
-                    </span>
-                    <span className="text-sm text-foreground">{org}</span>
-                  </div>
+                {CAREER.map(({ period, org }, i) => (
+                  <FadeSection key={org} delay={0.2 + i * 0.08}>
+                    <div className="flex items-center gap-3 bg-card border border-border rounded-xl px-4 py-3 hover:border-primary/30 transition-colors">
+                      <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">
+                        {period}
+                      </span>
+                      <span className="text-sm text-foreground">{org}</span>
+                    </div>
+                  </FadeSection>
                 ))}
               </div>
 
               <div className="space-y-2 pt-2">
                 <p className="text-xs tracking-[2px] text-muted-foreground font-medium">학력</p>
                 {["한국과학영재고 졸업", "연세대학교 졸업"].map((edu) => (
-                  <div key={edu} className="flex items-center gap-3 bg-card border border-border rounded-xl px-4 py-3">
+                  <div key={edu} className="flex items-center gap-3 bg-card border border-border rounded-xl px-4 py-3 hover:border-primary/30 transition-colors">
                     <span className="text-lg">🎓</span>
                     <span className="text-sm text-foreground">{edu}</span>
                   </div>
@@ -234,172 +279,201 @@ const Index = () => {
 
               <button
                 onClick={() => scrollTo("contact")}
-                className="bg-secondary hover:bg-secondary/80 text-foreground border-0 rounded-xl px-7 py-4 cursor-pointer font-semibold text-sm transition-colors"
+                className="bg-secondary hover:bg-secondary/80 text-foreground border-0 rounded-xl px-7 py-4 cursor-pointer font-semibold text-sm transition-all hover:-translate-y-0.5"
               >
                 지금 바로 상담 신청 →
               </button>
-            </div>
+            </FadeSection>
           </div>
         </div>
       </section>
 
-      {/* 3. SERVICES - 전문 세무서비스 */}
-      <section id="services" ref={servicesRef} className="py-20 lg:py-28 bg-background">
+      {/* 3. SERVICES */}
+      <section id="services" className="py-24 lg:py-32 bg-background relative">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`fade-up ${servicesIn ? "visible" : ""} text-center mb-16`}>
+          <FadeSection className="text-center mb-16">
             <p className="text-xs tracking-[3px] text-primary font-medium mb-3">OUR SERVICES</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">전문 세무 서비스</h2>
             <div className="accent-bar mx-auto mb-6" />
             <p className="text-muted-foreground max-w-xl mx-auto">
               다양한 세무 분야에 걸친 전문 지식으로 최적의 솔루션을 제공합니다.
             </p>
-          </div>
+          </FadeSection>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {SERVICES.map((s, i) => (
-              <div
-                key={s.title}
-                className={`fade-up delay-${Math.min(i + 1, 5)} ${servicesIn ? "visible" : ""} service-card bg-card border border-border rounded-2xl p-7 cursor-pointer`}
-              >
-                <div className="h-1 w-full rounded-t-2xl gold-gradient -mt-7 -mx-7 mb-6" style={{ width: "calc(100% + 56px)" }} />
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-3xl">{s.icon}</span>
-                  <span className="text-[10px] tracking-wider text-primary font-semibold bg-primary/10 px-3 py-1 rounded-full">
-                    {s.tag}
-                  </span>
+              <FadeSection key={s.title} delay={i * 0.08}>
+                <div className="service-card bg-card border border-border rounded-2xl p-7 cursor-pointer relative overflow-hidden group h-full">
+                  <div className="absolute top-0 left-0 right-0 h-1 gold-gradient" />
+                  <div className="absolute inset-0 gold-gradient opacity-0 group-hover:opacity-[0.04] transition-opacity duration-500" />
+                  <div className="relative">
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="w-14 h-14 rounded-2xl bg-secondary/50 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300">
+                        {s.icon}
+                      </div>
+                      <span className="text-[10px] tracking-wider text-primary font-semibold bg-primary/10 px-3 py-1 rounded-full">
+                        {s.tag}
+                      </span>
+                    </div>
+                    <h3 className="font-serif font-bold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">{s.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                  </div>
                 </div>
-                <h3 className="font-serif font-bold text-lg text-foreground mb-2">{s.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-              </div>
+              </FadeSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 4. CASES - 주요업무사례 */}
-      <section id="cases" ref={casesRef} className="py-20 lg:py-28 bg-secondary/30">
+      {/* 4. CASES */}
+      <section id="cases" className="py-24 lg:py-32 bg-secondary/30 relative">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`fade-up ${casesIn ? "visible" : ""} text-center mb-16`}>
+          <FadeSection className="text-center mb-16">
             <p className="text-xs tracking-[3px] text-primary font-medium mb-3">TRACK RECORD</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">주요 업무사례</h2>
             <div className="accent-bar mx-auto mb-6" />
-          </div>
+          </FadeSection>
 
-          <div className={`fade-up delay-1 ${casesIn ? "visible" : ""} grid sm:grid-cols-2 lg:grid-cols-3 gap-4`}>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {CASES.map((c, i) => (
-              <div
-                key={i}
-                className="bg-card border border-border rounded-xl px-5 py-4 flex items-start gap-3"
-              >
-                <span className="text-primary mt-0.5">✓</span>
-                <span className="text-sm text-foreground leading-relaxed">{c}</span>
-              </div>
+              <FadeSection key={i} delay={i * 0.04}>
+                <div className="bg-card border border-border rounded-xl px-5 py-4 flex items-start gap-3 hover:border-primary/30 hover:bg-card/80 transition-all group">
+                  <span className="text-primary mt-0.5 group-hover:scale-125 transition-transform">✓</span>
+                  <span className="text-sm text-foreground leading-relaxed">{c}</span>
+                </div>
+              </FadeSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 5. BLOG GUIDE - 평온한 세법가이드 */}
-      <section id="guide" ref={guideRef} className="py-20 lg:py-28 bg-background">
+      {/* 5. BLOG GUIDE */}
+      <section id="guide" className="py-24 lg:py-32 bg-background relative">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`fade-up ${guideIn ? "visible" : ""} text-center mb-16`}>
+          <FadeSection className="text-center mb-16">
             <p className="text-xs tracking-[3px] text-primary font-medium mb-3">TAX GUIDE</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">평온한 세법 가이드</h2>
             <div className="accent-bar mx-auto mb-6" />
             <p className="text-muted-foreground max-w-xl mx-auto">
               실무에 바로 적용할 수 있는 세법 정보와 절세 전략을 블로그에서 만나보세요.
             </p>
-          </div>
+          </FadeSection>
 
-          <div className={`fade-up delay-1 ${guideIn ? "visible" : ""} grid sm:grid-cols-2 lg:grid-cols-3 gap-6`}>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {BLOG_CATEGORIES.map((cat, i) => (
-              <a
-                key={cat.title}
-                href={cat.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`fade-up delay-${Math.min(i + 1, 5)} ${guideIn ? "visible" : ""} group bg-card border border-border rounded-2xl p-7 hover:border-primary/40 transition-all hover:-translate-y-1 block`}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-3xl">{cat.icon}</span>
-                  <h3 className="font-serif font-bold text-lg text-foreground group-hover:text-primary transition-colors">{cat.title}</h3>
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{cat.desc}</p>
-                <span className="text-xs text-primary font-medium group-hover:underline">블로그에서 보기 →</span>
-              </a>
+              <FadeSection key={cat.title} delay={i * 0.08}>
+                <a
+                  href={cat.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-card border border-border rounded-2xl p-7 hover:border-primary/40 transition-all hover:-translate-y-1.5 block relative overflow-hidden h-full hover:shadow-[0_20px_50px_hsla(200,95%,5%,0.3)]"
+                >
+                  <div className="absolute inset-0 gold-gradient opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500" />
+                  <div className="relative">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-secondary/50 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300">
+                        {cat.icon}
+                      </div>
+                      <h3 className="font-serif font-bold text-lg text-foreground group-hover:text-primary transition-colors">{cat.title}</h3>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">{cat.desc}</p>
+                    <span className="text-xs text-primary font-medium group-hover:tracking-wider transition-all">블로그에서 보기 →</span>
+                  </div>
+                </a>
+              </FadeSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 6. CONTACT - 상담신청 */}
-      <section id="contact" ref={contactRef} className="py-20 lg:py-28 navy-gradient">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`fade-up ${contactIn ? "visible" : ""} text-center mb-12`}>
+      {/* 6. CONTACT */}
+      <section id="contact" className="py-24 lg:py-32 navy-gradient relative">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+          <div className="absolute top-[30%] right-[10%] w-[400px] h-[400px] rounded-full bg-primary/[0.03] blur-[100px]" />
+        </div>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <FadeSection className="text-center mb-12">
             <p className="text-xs tracking-[3px] text-primary font-medium mb-3">CONSULTATION</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">상담 신청</h2>
             <div className="accent-bar mx-auto mb-6" />
             <p className="text-muted-foreground">
               편하신 방법으로 문의해 주시면 성심껏 상담해 드리겠습니다.
             </p>
-          </div>
+          </FadeSection>
 
-          <div className={`fade-up delay-1 ${contactIn ? "visible" : ""} grid sm:grid-cols-3 gap-4`}>
-            <a
-              href="tel:02-866-5006"
-              className="glass-surface rounded-2xl p-8 text-center hover:border-primary/40 border border-transparent transition-all hover:-translate-y-1 block"
-            >
-              <span className="text-4xl block mb-3">📞</span>
-              <h3 className="font-bold text-lg text-foreground mb-1">전화 상담</h3>
-              <p className="text-sm text-muted-foreground mb-4">바로 전화 연결됩니다</p>
-              <span className="inline-block gold-gradient text-primary-foreground border-0 rounded-xl px-6 py-3 font-bold text-sm">
-                02-866-5006
-              </span>
-            </a>
+          <div className="grid sm:grid-cols-3 gap-4">
+            <FadeSection delay={0.1}>
+              <a
+                href="tel:02-866-5006"
+                className="glass-surface rounded-2xl p-8 text-center hover:border-primary/40 border border-transparent transition-all hover:-translate-y-1.5 block group hover:shadow-[0_20px_50px_hsla(200,95%,5%,0.4)]"
+              >
+                <span className="text-4xl block mb-3 group-hover:scale-110 transition-transform">📞</span>
+                <h3 className="font-bold text-lg text-foreground mb-1">전화 상담</h3>
+                <p className="text-sm text-muted-foreground mb-4">바로 전화 연결됩니다</p>
+                <span className="inline-block gold-gradient text-primary-foreground border-0 rounded-xl px-6 py-3 font-bold text-sm">
+                  02-866-5006
+                </span>
+              </a>
+            </FadeSection>
 
-            <a
-              href="sms:010-9450-7458"
-              className="glass-surface rounded-2xl p-8 text-center hover:border-primary/40 border border-transparent transition-all hover:-translate-y-1 block"
-            >
-              <span className="text-4xl block mb-3">💬</span>
-              <h3 className="font-bold text-lg text-foreground mb-1">문자 상담</h3>
-              <p className="text-sm text-muted-foreground mb-4">문자로 상담 요청</p>
-              <span className="inline-block bg-secondary text-foreground border border-border rounded-xl px-6 py-3 font-bold text-sm">
-                010-9450-7458
-              </span>
-            </a>
+            <FadeSection delay={0.2}>
+              <a
+                href="sms:010-9450-7458"
+                className="glass-surface rounded-2xl p-8 text-center hover:border-primary/40 border border-transparent transition-all hover:-translate-y-1.5 block group hover:shadow-[0_20px_50px_hsla(200,95%,5%,0.4)]"
+              >
+                <span className="text-4xl block mb-3 group-hover:scale-110 transition-transform">💬</span>
+                <h3 className="font-bold text-lg text-foreground mb-1">문자 상담</h3>
+                <p className="text-sm text-muted-foreground mb-4">문자로 상담 요청</p>
+                <span className="inline-block bg-secondary text-foreground border border-border rounded-xl px-6 py-3 font-bold text-sm">
+                  010-9450-7458
+                </span>
+              </a>
+            </FadeSection>
 
-            <div className="glass-surface rounded-2xl p-8 text-center border border-transparent">
-              <span className="text-4xl block mb-3">🏢</span>
-              <h3 className="font-bold text-lg text-foreground mb-1">방문 상담</h3>
-              <p className="text-sm text-muted-foreground mb-4">사무실 주소</p>
-              <p className="text-xs text-foreground font-medium mb-4">강남구 선릉로121길 15, 4층</p>
-              <div className="flex gap-2 justify-center">
-                <a
-                  href="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EC%84%A0%EB%A6%89%EB%A1%9C121%EA%B8%B8%2015"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-[#03c75a] text-white rounded-lg px-3 py-1.5 font-bold text-[10px] hover:opacity-90 transition-opacity"
-                >
-                  네이버 지도
-                </a>
-                <a
-                  href="https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EC%84%A0%EB%A6%89%EB%A1%9C121%EA%B8%B8%2015"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-[#fee500] text-[#191919] rounded-lg px-3 py-1.5 font-bold text-[10px] hover:opacity-90 transition-opacity"
-                >
-                  카카오맵
-                </a>
+            <FadeSection delay={0.3}>
+              <div className="glass-surface rounded-2xl p-8 text-center border border-transparent h-full">
+                <span className="text-4xl block mb-3">🏢</span>
+                <h3 className="font-bold text-lg text-foreground mb-1">방문 상담</h3>
+                <p className="text-sm text-muted-foreground mb-4">사무실 주소</p>
+                <p className="text-xs text-foreground font-medium mb-4">강남구 선릉로121길 15, 4층</p>
+                <div className="flex gap-2 justify-center">
+                  <a
+                    href="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EC%84%A0%EB%A6%89%EB%A1%9C121%EA%B8%B8%2015"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-[#03c75a] text-white rounded-lg px-3 py-1.5 font-bold text-[10px] hover:opacity-90 transition-opacity"
+                  >
+                    네이버 지도
+                  </a>
+                  <a
+                    href="https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EC%84%A0%EB%A6%89%EB%A1%9C121%EA%B8%B8%2015"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-[#fee500] text-[#191919] rounded-lg px-3 py-1.5 font-bold text-[10px] hover:opacity-90 transition-opacity"
+                  >
+                    카카오맵
+                  </a>
+                </div>
               </div>
-            </div>
+            </FadeSection>
           </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-navy-deep border-t border-border py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
+      <footer className="bg-navy-deep border-t border-border py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+          <div className="accent-bar mx-auto mb-6" />
           <p className="text-xs text-muted-foreground">
             세무회계 평온 | 대표세무사 김성열 | 평온한 세법 가이드
           </p>
