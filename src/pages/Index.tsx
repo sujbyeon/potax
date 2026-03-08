@@ -339,7 +339,7 @@ const Index = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">상담 신청</h2>
             <div className="accent-bar mx-auto mb-6" />
             <p className="text-muted-foreground">
-              전화, 문자 또는 방문으로 편하게 상담을 신청하세요.
+              편하신 방법으로 문의해 주시면 성심껏 상담해 드리겠습니다.
             </p>
           </div>
 
