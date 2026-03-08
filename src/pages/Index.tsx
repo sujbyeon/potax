@@ -145,7 +145,7 @@ const Index = () => {
                 <div className="flex items-center gap-4 pb-4 border-b border-border">
                   <span className="text-4xl">⚖️</span>
                   <div>
-                    <p className="font-serif font-bold text-lg text-foreground">세무회계평온</p>
+                    <p className="font-serif font-bold text-lg text-foreground">세무회계 평온</p>
                     <p className="text-xs text-muted-foreground">김성열 대표세무사</p>
                   </div>
                 </div>
