@@ -15,10 +15,10 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { label: "평온한 소식", href: "/news" },
-  { label: "기장 및 신고 가이드", href: "/bookkeeping" },
+  { label: "기장 및 신고 가이드", href: "https://blog.naver.com/PostList.naver?blogId=po-tax&from=postList&categoryNo=6" },
   {
     label: "재산세 가이드",
-    href: "/property-tax",
+    href: "https://blog.naver.com/PostList.naver?blogId=po-tax&from=postList&categoryNo=7&parentCategoryNo=7",
     children: [
       { label: "양도", href: "/property-tax/transfer" },
       { label: "상속 및 증여", href: "/property-tax/inheritance" },
@@ -27,14 +27,14 @@ const NAV_ITEMS: NavItem[] = [
   },
   {
     label: "컨설팅 가이드",
-    href: "/consulting",
+    href: "https://blog.naver.com/PostList.naver?blogId=po-tax&from=postList&categoryNo=10&parentCategoryNo=10",
     children: [
       { label: "조사", href: "/consulting/audit" },
       { label: "불복 및 경정청구", href: "/consulting/appeal" },
       { label: "컨설팅", href: "/consulting/general" },
     ],
   },
-  { label: "판례 및 실무 가이드", href: "/cases" },
+  { label: "판례 및 실무 가이드", href: "https://blog.naver.com/PostList.naver?blogId=po-tax&from=postList&categoryNo=14" },
 ];
 
 const Header = () => {
@@ -131,6 +131,7 @@ const Header = () => {
                 ) : (
                   <a
                     href={item.href}
+                    {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="text-[13px] font-medium text-foreground/80 hover:text-primary px-3 py-2 rounded-lg transition-colors"
                   >
                     {item.label}
@@ -201,6 +202,7 @@ const Header = () => {
                   ) : (
                     <a
                       href={item.href}
+                      {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                       className="block text-sm font-medium text-foreground/80 hover:text-primary py-3 px-2 transition-colors"
                       onClick={() => setIsMenuOpen(false)}
                     >
