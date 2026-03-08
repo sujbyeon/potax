@@ -360,7 +360,7 @@ const Index = () => {
             >
               <span className="text-4xl block mb-3">💬</span>
               <h3 className="font-bold text-lg text-foreground mb-1">문자 상담</h3>
-              <p className="text-sm text-muted-foreground mb-4">문자로 문의해주세요</p>
+              <p className="text-sm text-muted-foreground mb-4">문자로 상담 요청</p>
               <span className="inline-block bg-secondary text-foreground border border-border rounded-xl px-6 py-3 font-bold text-sm">
                 010-9450-7458
               </span>
@@ -369,7 +369,7 @@ const Index = () => {
             <div className="glass-surface rounded-2xl p-8 text-center border border-transparent">
               <span className="text-4xl block mb-3">🏢</span>
               <h3 className="font-bold text-lg text-foreground mb-1">방문 상담</h3>
-              <p className="text-sm text-muted-foreground mb-4">사무실로 방문해주세요</p>
+              <p className="text-sm text-muted-foreground mb-4">사무실 주소</p>
               <span className="inline-block bg-secondary text-foreground border border-border rounded-xl px-5 py-3 font-bold text-xs">
                 서울 강남구 선릉로121길 15, 4층
               </span>
