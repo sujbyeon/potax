@@ -202,6 +202,7 @@ const Header = () => {
                   ) : (
                     <a
                       href={item.href}
+                      {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                       className="block text-sm font-medium text-foreground/80 hover:text-primary py-3 px-2 transition-colors"
                       onClick={() => setIsMenuOpen(false)}
                     >
