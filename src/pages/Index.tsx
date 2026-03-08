@@ -288,7 +288,74 @@ const Index = () => {
         </div>
       </section>
 
-      {/* 3. SERVICES */}
+      {/* 3. CASES */}
+      <section id="cases" className="py-24 lg:py-32 bg-background relative">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeSection className="text-center mb-16">
+            <p className="text-xs tracking-[3px] text-primary font-medium mb-3">TRACK RECORD</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">주요 업무사례</h2>
+            <div className="accent-bar mx-auto mb-6" />
+          </FadeSection>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {CASES.map((c, i) => (
+              <FadeSection key={i} delay={i * 0.04}>
+                <div className="bg-card border border-border rounded-xl px-5 py-4 flex items-start gap-3 hover:border-primary/30 hover:bg-card/80 transition-all group">
+                  <span className="text-primary mt-0.5 group-hover:scale-125 transition-transform">✓</span>
+                  <span className="text-sm text-foreground leading-relaxed">{c}</span>
+                </div>
+              </FadeSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. BLOG GUIDE */}
+      <section id="guide" className="py-24 lg:py-32 bg-secondary/30 relative">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeSection className="text-center mb-16">
+            <p className="text-xs tracking-[3px] text-primary font-medium mb-3">TAX GUIDE</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">평온한 세법 가이드</h2>
+            <div className="accent-bar mx-auto mb-6" />
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              실무에 바로 적용할 수 있는 세법 정보와 절세 전략을 블로그에서 만나보세요.
+            </p>
+          </FadeSection>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {BLOG_CATEGORIES.map((cat, i) => (
+              <FadeSection key={cat.title} delay={i * 0.08}>
+                <a
+                  href={cat.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-card border border-border rounded-2xl p-7 hover:border-primary/40 transition-all hover:-translate-y-1.5 block relative overflow-hidden h-full hover:shadow-[0_20px_50px_hsla(200,95%,5%,0.3)]"
+                >
+                  <div className="absolute inset-0 gold-gradient opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500" />
+                  <div className="relative">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-secondary/50 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300">
+                        {cat.icon}
+                      </div>
+                      <h3 className="font-serif font-bold text-lg text-foreground group-hover:text-primary transition-colors">{cat.title}</h3>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">{cat.desc}</p>
+                    <span className="text-xs text-primary font-medium group-hover:tracking-wider transition-all">블로그에서 보기 →</span>
+                  </div>
+                </a>
+              </FadeSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. SERVICES */}
       <section id="services" className="py-24 lg:py-32 bg-background relative">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
@@ -322,73 +389,6 @@ const Index = () => {
                     <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
                   </div>
                 </div>
-              </FadeSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. CASES */}
-      <section id="cases" className="py-24 lg:py-32 bg-secondary/30 relative">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeSection className="text-center mb-16">
-            <p className="text-xs tracking-[3px] text-primary font-medium mb-3">TRACK RECORD</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">주요 업무사례</h2>
-            <div className="accent-bar mx-auto mb-6" />
-          </FadeSection>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {CASES.map((c, i) => (
-              <FadeSection key={i} delay={i * 0.04}>
-                <div className="bg-card border border-border rounded-xl px-5 py-4 flex items-start gap-3 hover:border-primary/30 hover:bg-card/80 transition-all group">
-                  <span className="text-primary mt-0.5 group-hover:scale-125 transition-transform">✓</span>
-                  <span className="text-sm text-foreground leading-relaxed">{c}</span>
-                </div>
-              </FadeSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. BLOG GUIDE */}
-      <section id="guide" className="py-24 lg:py-32 bg-background relative">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeSection className="text-center mb-16">
-            <p className="text-xs tracking-[3px] text-primary font-medium mb-3">TAX GUIDE</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">평온한 세법 가이드</h2>
-            <div className="accent-bar mx-auto mb-6" />
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              실무에 바로 적용할 수 있는 세법 정보와 절세 전략을 블로그에서 만나보세요.
-            </p>
-          </FadeSection>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {BLOG_CATEGORIES.map((cat, i) => (
-              <FadeSection key={cat.title} delay={i * 0.08}>
-                <a
-                  href={cat.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group bg-card border border-border rounded-2xl p-7 hover:border-primary/40 transition-all hover:-translate-y-1.5 block relative overflow-hidden h-full hover:shadow-[0_20px_50px_hsla(200,95%,5%,0.3)]"
-                >
-                  <div className="absolute inset-0 gold-gradient opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500" />
-                  <div className="relative">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-secondary/50 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300">
-                        {cat.icon}
-                      </div>
-                      <h3 className="font-serif font-bold text-lg text-foreground group-hover:text-primary transition-colors">{cat.title}</h3>
-                    </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">{cat.desc}</p>
-                    <span className="text-xs text-primary font-medium group-hover:tracking-wider transition-all">블로그에서 보기 →</span>
-                  </div>
-                </a>
               </FadeSection>
             ))}
           </div>
