@@ -129,7 +129,7 @@ const Index = () => {
                   onClick={() => scrollTo("contact")}
                   className="gold-gradient text-primary-foreground border-0 rounded-xl px-7 py-4 cursor-pointer font-bold text-sm hover:opacity-90 transition-opacity"
                 >
-                  무료 상담 신청하기
+                  상담 신청하기
                 </button>
                 <button
                   onClick={() => scrollTo("services")}
@@ -307,7 +307,7 @@ const Index = () => {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`fade-up ${contactIn ? "visible" : ""} text-center mb-12`}>
             <p className="text-xs tracking-[3px] text-primary font-medium mb-3">CONSULTATION</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">무료 상담 신청</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">상담 신청</h2>
             <div className="accent-bar mx-auto mb-6" />
             <p className="text-muted-foreground">
               방문 또는 전화 상담이 필요하신 경우, 아래로 연락주시면 친절하게 상담해드리겠습니다.
@@ -371,7 +371,7 @@ const Index = () => {
                 onClick={handleSubmit}
                 className="w-full gold-gradient text-primary-foreground border-0 rounded-xl py-4 cursor-pointer font-bold text-sm hover:opacity-90 transition-opacity"
               >
-                무료 상담 신청하기
+                상담 신청하기
               </button>
 
               <p className="text-[11px] text-muted-foreground/40 text-center">
