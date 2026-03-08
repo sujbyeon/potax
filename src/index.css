@@ -110,7 +110,7 @@
 
   /* Hero card glow */
   .hero-card-glow {
-    box-shadow: 0 20px 80px hsla(200, 95%, 5%, 0.4), 0 0 40px hsla(20, 23%, 53%, 0.05);
+    box-shadow: 0 20px 80px hsla(212, 90%, 5%, 0.4), 0 0 40px hsla(20, 23%, 53%, 0.05);
   }
 
   /* Float animation */
