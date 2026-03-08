@@ -63,24 +63,6 @@ const scrollTo = (id: string) => {
 };
 
 const Index = () => {
-  const [form, setForm] = useState({ name: "", phone: "", email: "", type: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
-
-  const [heroRef, heroIn] = useInView(0.1);
-  const [profileRef, profileIn] = useInView(0.1);
-  const [servicesRef, servicesIn] = useInView(0.05);
-  const [casesRef, casesIn] = useInView(0.05);
-  const [guideRef, guideIn] = useInView(0.1);
-  const [contactRef, contactIn] = useInView(0.05);
-
-  const handleSubmit = () => {
-    if (form.name && form.phone) {
-      setSubmitted(true);
-      toast.success("상담 신청이 완료되었습니다!");
-    } else {
-      toast.error("성함과 연락처를 입력해주세요.");
-    }
-  };
 
   return (
     <div className="min-h-screen bg-background">
