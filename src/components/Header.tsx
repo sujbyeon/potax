@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from "react";
-import logoImg from "@/assets/logo-pyeongon.png";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoImg from "@/assets/logo-pyeongon.png";
 
 const NAV_SECTIONS = [
   { label: "대표 소개", id: "profile" },
@@ -19,16 +19,6 @@ const Header = () => {
     const h = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", h);
     return () => window.removeEventListener("scroll", h);
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setOpenDropdown(null);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const scrollTo = (id: string) => {
@@ -67,48 +57,15 @@ const Header = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1" ref={dropdownRef}>
-            {NAV_ITEMS.map((item) => (
-              <div key={item.label} className="relative">
-                {item.children ? (
-                  <>
-                    <button
-                      onClick={() =>
-                        setOpenDropdown(openDropdown === item.label ? null : item.label)
-                      }
-                      className="flex items-center gap-1 text-[13px] font-medium text-foreground/80 hover:text-primary px-3 py-2 rounded-lg transition-colors"
-                    >
-                      {item.label}
-                      <ChevronDown
-                        className={`h-3.5 w-3.5 transition-transform ${
-                          openDropdown === item.label ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-                    {openDropdown === item.label && (
-                      <div className="absolute top-full left-0 mt-1 min-w-[180px] bg-card border border-border rounded-xl shadow-xl shadow-background/40 py-2 animate-in fade-in slide-in-from-top-2 duration-200">
-                        {item.children.map((child) => (
-                          <a
-                            key={child.label}
-                            href={child.href}
-                            className="block px-4 py-2.5 text-[13px] text-foreground/70 hover:text-primary hover:bg-secondary/50 transition-colors"
-                          >
-                            {child.label}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <a
-                    href={item.href}
-                    {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className="text-[13px] font-medium text-foreground/80 hover:text-primary px-3 py-2 rounded-lg transition-colors"
-                  >
-                    {item.label}
-                  </a>
-                )}
-              </div>
+          <nav className="hidden lg:flex items-center gap-1">
+            {NAV_SECTIONS.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className="text-[13px] font-medium text-foreground/80 hover:text-primary px-3 py-2 rounded-lg transition-colors"
+              >
+                {item.label}
+              </button>
             ))}
           </nav>
 
@@ -136,51 +93,14 @@ const Header = () => {
         {isMenuOpen && (
           <div className="lg:hidden py-4 border-t border-border bg-background/95 backdrop-blur-md animate-in fade-in slide-in-from-top-2 duration-200">
             <nav className="flex flex-col gap-1">
-              {NAV_ITEMS.map((item) => (
-                <div key={item.label}>
-                  {item.children ? (
-                    <>
-                      <button
-                        onClick={() =>
-                          setOpenMobileDropdown(
-                            openMobileDropdown === item.label ? null : item.label
-                          )
-                        }
-                        className="flex items-center justify-between w-full text-sm font-medium text-foreground/80 hover:text-primary py-3 px-2 transition-colors"
-                      >
-                        {item.label}
-                        <ChevronDown
-                          className={`h-4 w-4 transition-transform ${
-                            openMobileDropdown === item.label ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                      {openMobileDropdown === item.label && (
-                        <div className="pl-4 pb-2 space-y-1">
-                          {item.children.map((child) => (
-                            <a
-                              key={child.label}
-                              href={child.href}
-                              className="block text-sm text-muted-foreground hover:text-primary py-2 px-2 transition-colors"
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              {child.label}
-                            </a>
-                          ))}
-                        </div>
-                      )}
-                    </>
-                  ) : (
-                    <a
-                      href={item.href}
-                      {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                      className="block text-sm font-medium text-foreground/80 hover:text-primary py-3 px-2 transition-colors"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.label}
-                    </a>
-                  )}
-                </div>
+              {NAV_SECTIONS.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollTo(item.id)}
+                  className="block text-sm font-medium text-foreground/80 hover:text-primary py-3 px-2 transition-colors text-left"
+                >
+                  {item.label}
+                </button>
               ))}
               <Button
                 className="gold-gradient text-primary-foreground rounded-lg w-full mt-3 font-bold border-0"
