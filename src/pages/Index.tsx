@@ -107,7 +107,7 @@ const Index = () => {
             <div className={`fade-up ${heroIn ? "visible" : ""} space-y-8`}>
               <div className="inline-flex items-center gap-2 bg-secondary/50 border border-border rounded-full px-4 py-2 text-xs text-muted-foreground">
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                강남구청역 도보 10분 거리
+                평온한 세법 가이드
               </div>
 
               <div>
