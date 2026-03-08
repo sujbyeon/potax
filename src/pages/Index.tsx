@@ -371,7 +371,7 @@ const Index = () => {
                 onClick={handleSubmit}
                 className="w-full gold-gradient text-primary-foreground border-0 rounded-xl py-4 cursor-pointer font-bold text-sm hover:opacity-90 transition-opacity"
               >
-                무료 상담 신청하기
+                상담 신청하기
               </button>
 
               <p className="text-[11px] text-muted-foreground/40 text-center">
