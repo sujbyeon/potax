@@ -13,7 +13,7 @@ const SERVICES = [
 ];
 
 const CAREER = [
-  { period: "현", org: "세무회계평온 대표세무사" },
+  { period: "현", org: "세무회계 평온 대표세무사" },
   { period: "전", org: "에스제이조세파트너스 대표세무사" },
   { period: "전", org: "세무법인 호연 세무사" },
   { period: "전", org: "좋은벗세무회계 세무사" },
