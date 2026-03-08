@@ -103,9 +103,9 @@
 
   /* Glass surface */
   .glass-surface {
-    background: hsla(200, 40%, 15%, 0.6);
+    background: hsla(212, 35%, 15%, 0.6);
     backdrop-filter: blur(24px);
-    border: 1px solid hsla(200, 30%, 25%, 0.5);
+    border: 1px solid hsla(212, 28%, 25%, 0.5);
   }
 
   /* Hero card glow */
