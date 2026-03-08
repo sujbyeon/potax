@@ -13,7 +13,7 @@ const SERVICES = [
 ];
 
 const CAREER = [
-  { period: "현", org: "세무회계평온 대표세무사" },
+  { period: "현", org: "세무회계 평온 대표세무사" },
   { period: "전", org: "에스제이조세파트너스 대표세무사" },
   { period: "전", org: "세무법인 호연 세무사" },
   { period: "전", org: "좋은벗세무회계 세무사" },
@@ -145,7 +145,7 @@ const Index = () => {
                 <div className="flex items-center gap-4 pb-4 border-b border-border">
                   <span className="text-4xl">⚖️</span>
                   <div>
-                    <p className="font-serif font-bold text-lg text-foreground">세무회계평온</p>
+                    <p className="font-serif font-bold text-lg text-foreground">세무회계 평온</p>
                     <p className="text-xs text-muted-foreground">김성열 대표세무사</p>
                   </div>
                 </div>
@@ -217,7 +217,7 @@ const Index = () => {
                   <img src={profileImg} alt="김성열 세무사" className="w-full h-full object-cover" />
                 </div>
                 <h3 className="font-serif font-bold text-2xl text-foreground mb-1">김성열 세무사</h3>
-                <p className="text-sm text-muted-foreground mb-4">세무회계평온 대표세무사</p>
+                <p className="text-sm text-muted-foreground mb-4">세무회계 평온 대표세무사</p>
                 <div className="flex flex-wrap justify-center gap-2">
                   {["한국과학영재고", "연세대학교", "前 좋은벗세무회계", "前 세무법인 호연"].map((t) => (
                     <span
@@ -400,13 +400,13 @@ const Index = () => {
       <footer className="bg-navy-deep border-t border-border py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
           <p className="text-xs text-muted-foreground">
-            세무회계평온 | 대표세무사 김성열 | 강남구청역 인근
+            세무회계 평온 | 대표세무사 김성열 | 강남구청역 인근
           </p>
           <p className="text-xs text-muted-foreground">
             T. 02-866-5006 | M. 010-9450-7458
           </p>
           <p className="text-xs text-muted-foreground/50">
-            © 2025 세무회계평온. All rights reserved.
+            © 2025 세무회계 평온. All rights reserved.
           </p>
         </div>
       </footer>
