@@ -370,9 +370,25 @@ const Index = () => {
               <span className="text-4xl block mb-3">🏢</span>
               <h3 className="font-bold text-lg text-foreground mb-1">방문 상담</h3>
               <p className="text-sm text-muted-foreground mb-4">사무실 주소</p>
-              <span className="inline-block bg-secondary text-foreground border border-border rounded-xl px-5 py-3 font-bold text-xs">
-                서울 강남구 선릉로121길 15, 4층
-              </span>
+              <p className="text-xs text-foreground font-medium mb-4">서울 강남구 선릉로121길 15, 4층</p>
+              <div className="flex gap-2 justify-center">
+                <a
+                  href="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EC%84%A0%EB%A6%89%EB%A1%9C121%EA%B8%B8%2015"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-[#03c75a] text-white rounded-lg px-4 py-2 font-bold text-xs hover:opacity-90 transition-opacity"
+                >
+                  네이버 지도
+                </a>
+                <a
+                  href="https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EC%84%A0%EB%A6%89%EB%A1%9C121%EA%B8%B8%2015"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-[#fee500] text-[#191919] rounded-lg px-4 py-2 font-bold text-xs hover:opacity-90 transition-opacity"
+                >
+                  카카오맵
+                </a>
+              </div>
             </div>
           </div>
         </div>
