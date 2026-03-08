@@ -5,9 +5,9 @@ import logoImg from "@/assets/logo-pyeongon.png";
 
 const NAV_SECTIONS = [
   { label: "대표 소개", id: "profile" },
-  { label: "전문 서비스", id: "services" },
   { label: "업무 사례", id: "cases" },
   { label: "세법 가이드", id: "guide" },
+  { label: "전문 서비스", id: "services" },
   { label: "상담 신청", id: "contact" },
 ];
 
