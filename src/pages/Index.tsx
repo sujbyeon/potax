@@ -121,16 +121,14 @@ const Index = () => {
 
               <div>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                  <span className="text-foreground">복잡한 세금,</span>
+                  <span className="text-foreground">평온한 세법 가이드,</span>
                   <br />
-                  <span className="text-gold-gradient">평온하게 해결합니다</span>
+                  <span className="text-gold-gradient">세무회계 평온</span>
                 </h1>
               </div>
 
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-lg">
-                스타트업부터 중견기업, 상장사, 대기업 그룹사까지.
-                컨설팅, 조사 대응, 불복, 상속·증여 업무의
-                실전 경험으로 신뢰할 수 있는 세무 파트너가 되겠습니다.
+                현장에서 단련된 세무 전문가만이 줄 수 있는 조언이 있습니다. 스타트업부터 대기업 그룹사까지, 복잡한 세무 이슈·세무조사 대응·부동산 상속증여 등 다양한 현장을 누빈 전문가가 직접 함께합니다. 수천 건의 실전 경험이 쌓은 신뢰를 바탕으로, 세무회계 평온이 든든한 파트너가 되겠습니다.
               </p>
 
               <div className="flex flex-wrap gap-3">
