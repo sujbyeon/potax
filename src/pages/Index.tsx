@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef, RefObject } from "react";
+import { useEffect, useRef, RefObject, useState } from "react";
 import Header from "@/components/Header";
-import { toast } from "sonner";
 import profileImg from "@/assets/profile-kimsy.png";
 
 const SERVICES = [
