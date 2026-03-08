@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import logoImg from "@/assets/logo-pyeongon.png";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface SubMenu {
