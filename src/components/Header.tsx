@@ -3,47 +3,17 @@ import logoImg from "@/assets/logo-pyeongon.png";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-interface SubMenu {
-  label: string;
-  href: string;
-}
-
-interface NavItem {
-  label: string;
-  href: string;
-  children?: SubMenu[];
-}
-
-const NAV_ITEMS: NavItem[] = [
-  { label: "평온한 소식", href: "/news" },
-  { label: "기장 및 신고 가이드", href: "https://blog.naver.com/PostList.naver?blogId=po-tax&from=postList&categoryNo=6" },
-  {
-    label: "재산세 가이드",
-    href: "https://blog.naver.com/PostList.naver?blogId=po-tax&from=postList&categoryNo=7&parentCategoryNo=7",
-    children: [
-      { label: "양도", href: "/property-tax/transfer" },
-      { label: "상속 및 증여", href: "/property-tax/inheritance" },
-      { label: "지방세", href: "/property-tax/local" },
-    ],
-  },
-  {
-    label: "컨설팅 가이드",
-    href: "https://blog.naver.com/PostList.naver?blogId=po-tax&from=postList&categoryNo=10&parentCategoryNo=10",
-    children: [
-      { label: "조사", href: "/consulting/audit" },
-      { label: "불복 및 경정청구", href: "/consulting/appeal" },
-      { label: "컨설팅", href: "/consulting/general" },
-    ],
-  },
-  { label: "판례 및 실무 가이드", href: "https://blog.naver.com/PostList.naver?blogId=po-tax&from=postList&categoryNo=14" },
+const NAV_SECTIONS = [
+  { label: "대표 소개", id: "profile" },
+  { label: "전문 서비스", id: "services" },
+  { label: "업무 사례", id: "cases" },
+  { label: "세법 가이드", id: "guide" },
+  { label: "상담 신청", id: "contact" },
 ];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 50);
