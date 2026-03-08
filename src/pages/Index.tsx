@@ -36,6 +36,14 @@ const CASES = [
   "외국납부세액공제관련 경정청구",
 ];
 
+const BLOG_CATEGORIES = [
+  { icon: "📰", title: "평온한 소식", href: "https://blog.naver.com/PostList.naver?blogId=po-tax&from=postList&categoryNo=6", desc: "세무회계 평온의 최신 소식과 공지사항" },
+  { icon: "📝", title: "기장 및 신고 가이드", href: "https://blog.naver.com/PostList.naver?blogId=po-tax&from=postList&categoryNo=6", desc: "기장 대행과 각종 세금 신고에 대한 실무 가이드" },
+  { icon: "🏠", title: "재산세 가이드", href: "https://blog.naver.com/PostList.naver?blogId=po-tax&from=postList&categoryNo=7&parentCategoryNo=7", desc: "양도세, 상속·증여세, 지방세 관련 절세 전략" },
+  { icon: "💡", title: "컨설팅 가이드", href: "https://blog.naver.com/PostList.naver?blogId=po-tax&from=postList&categoryNo=10&parentCategoryNo=10", desc: "세무조사, 불복·경정청구, 컨설팅 실무 안내" },
+  { icon: "⚖️", title: "판례 및 실무 가이드", href: "https://blog.naver.com/PostList.naver?blogId=po-tax&from=postList&categoryNo=14", desc: "주요 세법 판례와 실무 적용 사례 분석" },
+];
+
 function useInView(threshold = 0.15): [RefObject<HTMLDivElement>, boolean] {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -59,9 +67,10 @@ const Index = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const [heroRef, heroIn] = useInView(0.1);
-  const [servicesRef, servicesIn] = useInView(0.05);
   const [profileRef, profileIn] = useInView(0.1);
+  const [servicesRef, servicesIn] = useInView(0.05);
   const [casesRef, casesIn] = useInView(0.05);
+  const [guideRef, guideIn] = useInView(0.1);
   const [contactRef, contactIn] = useInView(0.05);
 
   const handleSubmit = () => {
@@ -77,7 +86,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
 
-      {/* HERO */}
+      {/* 1. HERO - 첫 페이지 */}
       <section
         id="home"
         ref={heroRef}
@@ -107,21 +116,21 @@ const Index = () => {
             <div className={`fade-up ${heroIn ? "visible" : ""} space-y-8`}>
               <div className="inline-flex items-center gap-2 bg-secondary/50 border border-border rounded-full px-4 py-2 text-xs text-muted-foreground">
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                평온한 세법 가이드
+                세무회계 평온
               </div>
 
               <div>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                  <span className="text-foreground">평온한</span>
+                  <span className="text-foreground">복잡한 세금,</span>
                   <br />
-                  <span className="text-gold-gradient">세무 파트너</span>
+                  <span className="text-gold-gradient">평온하게 해결합니다</span>
                 </h1>
               </div>
 
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-lg">
                 스타트업부터 중견기업, 상장사, 대기업 그룹사까지.
                 컨설팅, 조사 대응, 불복, 상속·증여 업무의
-                실전 경험으로 복잡한 세금 문제를 해결합니다.
+                실전 경험으로 신뢰할 수 있는 세무 파트너가 되겠습니다.
               </p>
 
               <div className="flex flex-wrap gap-3">
@@ -132,10 +141,10 @@ const Index = () => {
                   상담 신청하기
                 </button>
                 <button
-                  onClick={() => scrollTo("services")}
+                  onClick={() => scrollTo("profile")}
                   className="bg-transparent text-foreground border border-border rounded-xl px-6 py-4 cursor-pointer text-sm hover:border-primary/40 transition-colors"
                 >
-                  서비스 알아보기 →
+                  대표세무사 소개 →
                 </button>
               </div>
             </div>
@@ -174,40 +183,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* SERVICES */}
-      <section id="services" ref={servicesRef} className="py-20 lg:py-28 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`fade-up ${servicesIn ? "visible" : ""} text-center mb-16`}>
-            <p className="text-xs tracking-[3px] text-primary font-medium mb-3">OUR SERVICES</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">전문 세무 서비스</h2>
-            <div className="accent-bar mx-auto mb-6" />
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              다양한 세무 분야에 걸친 전문 지식으로 최적의 솔루션을 제공합니다.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map((s, i) => (
-              <div
-                key={s.title}
-                className={`fade-up delay-${Math.min(i + 1, 5)} ${servicesIn ? "visible" : ""} service-card bg-card border border-border rounded-2xl p-7 cursor-pointer`}
-              >
-                <div className="h-1 w-full rounded-t-2xl gold-gradient -mt-7 -mx-7 mb-6" style={{ width: "calc(100% + 56px)" }} />
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-3xl">{s.icon}</span>
-                  <span className="text-[10px] tracking-wider text-primary font-semibold bg-primary/10 px-3 py-1 rounded-full">
-                    {s.tag}
-                  </span>
-                </div>
-                <h3 className="font-serif font-bold text-lg text-foreground mb-2">{s.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PROFILE */}
+      {/* 2. PROFILE - 김성열 대표세무사 소개 */}
       <section id="profile" ref={profileRef} className="py-20 lg:py-28 bg-secondary/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -279,8 +255,41 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CASES */}
-      <section id="cases" ref={casesRef} className="py-20 lg:py-28 bg-background">
+      {/* 3. SERVICES - 전문 세무서비스 */}
+      <section id="services" ref={servicesRef} className="py-20 lg:py-28 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`fade-up ${servicesIn ? "visible" : ""} text-center mb-16`}>
+            <p className="text-xs tracking-[3px] text-primary font-medium mb-3">OUR SERVICES</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">전문 세무 서비스</h2>
+            <div className="accent-bar mx-auto mb-6" />
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              다양한 세무 분야에 걸친 전문 지식으로 최적의 솔루션을 제공합니다.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {SERVICES.map((s, i) => (
+              <div
+                key={s.title}
+                className={`fade-up delay-${Math.min(i + 1, 5)} ${servicesIn ? "visible" : ""} service-card bg-card border border-border rounded-2xl p-7 cursor-pointer`}
+              >
+                <div className="h-1 w-full rounded-t-2xl gold-gradient -mt-7 -mx-7 mb-6" style={{ width: "calc(100% + 56px)" }} />
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-3xl">{s.icon}</span>
+                  <span className="text-[10px] tracking-wider text-primary font-semibold bg-primary/10 px-3 py-1 rounded-full">
+                    {s.tag}
+                  </span>
+                </div>
+                <h3 className="font-serif font-bold text-lg text-foreground mb-2">{s.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. CASES - 주요업무사례 */}
+      <section id="cases" ref={casesRef} className="py-20 lg:py-28 bg-secondary/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`fade-up ${casesIn ? "visible" : ""} text-center mb-16`}>
             <p className="text-xs tracking-[3px] text-primary font-medium mb-3">TRACK RECORD</p>
@@ -302,7 +311,40 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CONTACT */}
+      {/* 5. BLOG GUIDE - 평온한 세법가이드 */}
+      <section id="guide" ref={guideRef} className="py-20 lg:py-28 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`fade-up ${guideIn ? "visible" : ""} text-center mb-16`}>
+            <p className="text-xs tracking-[3px] text-primary font-medium mb-3">TAX GUIDE</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">평온한 세법 가이드</h2>
+            <div className="accent-bar mx-auto mb-6" />
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              실무에 바로 적용할 수 있는 세법 정보와 절세 전략을 블로그에서 만나보세요.
+            </p>
+          </div>
+
+          <div className={`fade-up delay-1 ${guideIn ? "visible" : ""} grid sm:grid-cols-2 lg:grid-cols-3 gap-6`}>
+            {BLOG_CATEGORIES.map((cat, i) => (
+              <a
+                key={cat.title}
+                href={cat.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`fade-up delay-${Math.min(i + 1, 5)} ${guideIn ? "visible" : ""} group bg-card border border-border rounded-2xl p-7 hover:border-primary/40 transition-all hover:-translate-y-1 block`}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl">{cat.icon}</span>
+                  <h3 className="font-serif font-bold text-lg text-foreground group-hover:text-primary transition-colors">{cat.title}</h3>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{cat.desc}</p>
+                <span className="text-xs text-primary font-medium group-hover:underline">블로그에서 보기 →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. CONTACT - 상담신청 */}
       <section id="contact" ref={contactRef} className="py-20 lg:py-28 navy-gradient">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`fade-up ${contactIn ? "visible" : ""} text-center mb-12`}>
@@ -347,7 +389,7 @@ const Index = () => {
                     className="w-full bg-secondary/30 border border-border rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all appearance-none"
                   >
                     <option value="" className="bg-card text-foreground">선택해주세요</option>
-                    {["종합소득세", "법인세", "기장 대행", "양도·상속·증여세", "세무조사 대응", "창업 컨설팅", "기타"].map(
+                    {["종합소득세", "법인세", "기장 대행", "양도·상속·증여세", "세무조사 대응", "재개발 재건축 컨설팅", "기타"].map(
                       (o) => (
                         <option key={o} value={o} className="bg-card text-foreground">{o}</option>
                       )
