@@ -147,7 +147,7 @@ const Header = () => {
               className="hidden lg:flex gold-gradient text-primary-foreground rounded-lg px-5 py-2 text-[13px] font-bold hover:opacity-90 transition-opacity border-0"
               onClick={() => scrollTo("contact")}
             >
-              무료 상담
+              상담 신청
             </Button>
 
             {/* Mobile Menu Button */}
