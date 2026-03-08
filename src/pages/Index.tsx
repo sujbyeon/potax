@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, RefObject } from "react";
 import Header from "@/components/Header";
 import { toast } from "sonner";
+import profileImg from "@/assets/profile-kimsy.png";
 
 const SERVICES = [
   { icon: "📋", title: "종합소득세 신고", desc: "개인사업자, 프리랜서, 임대소득자 등 모든 종합소득세 신고를 정확하고 신속하게 처리합니다.", tag: "개인" },
