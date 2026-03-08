@@ -217,7 +217,7 @@ const Index = () => {
                   <img src={profileImg} alt="김성열 세무사" className="w-full h-full object-cover" />
                 </div>
                 <h3 className="font-serif font-bold text-2xl text-foreground mb-1">김성열 세무사</h3>
-                <p className="text-sm text-muted-foreground mb-4">세무회계평온 대표세무사</p>
+                <p className="text-sm text-muted-foreground mb-4">세무회계 평온 대표세무사</p>
                 <div className="flex flex-wrap justify-center gap-2">
                   {["한국과학영재고", "연세대학교", "前 좋은벗세무회계", "前 세무법인 호연"].map((t) => (
                     <span
