@@ -98,7 +98,7 @@
 
   /* Navy gradient for hero */
   .navy-gradient {
-    background: linear-gradient(160deg, hsl(var(--navy-deep)) 0%, hsl(200, 70%, 14%) 40%, hsl(200, 50%, 18%) 100%);
+    background: linear-gradient(160deg, hsl(var(--navy-deep)) 0%, hsl(212, 65%, 14%) 40%, hsl(212, 45%, 18%) 100%);
   }
 
   /* Glass surface */
