@@ -11,11 +11,28 @@ const SERVICES = [
   { icon: "📊", title: "창업 세무 컨설팅", desc: "창업 초기 사업 형태 선택부터 절세 구조 설계까지, 성공적인 사업 시작을 위해 함께합니다.", tag: "창업" },
 ];
 
-const STATS = [
-  { value: "15+", label: "년 경력" },
-  { value: "2,000+", label: "고객사" },
-  { value: "98%", label: "고객 만족도" },
-  { value: "0건", label: "세무조사 패소" },
+const CAREER = [
+  { period: "현", org: "세무회계평온 대표세무사" },
+  { period: "전", org: "에스제이조세파트너스 대표세무사" },
+  { period: "전", org: "세무법인 호연 세무사" },
+  { period: "전", org: "좋은벗세무회계 세무사" },
+];
+
+const CASES = [
+  "식품 중견기업 정기 세무조사 대응",
+  "바이오 상장사 예치조사 조사대응",
+  "금융 그룹사 세무조사 대응",
+  "투자 및 증권사 세무조사 대응",
+  "에스테틱·뷰티 중소기업 조사",
+  "코스피 상장 제조 중견기업 조세불복",
+  "대기업 건설 계열사 조세불복",
+  "외국계 기업 한국지사장 상속세 신고 및 대응",
+  "정부 중앙부처 국장급 개인 증여신고",
+  "스타트업 세무 구조화",
+  "기업인 상속 및 조사 시뮬레이션",
+  "예술관련 재단법인 자문 및 컨설팅",
+  "정부 중앙부처 장관급 청문회 대응자료 검토",
+  "외국납부세액공제관련 경정청구",
 ];
 
 function useInView(threshold = 0.15): [RefObject<HTMLDivElement>, boolean] {
@@ -43,6 +60,7 @@ const Index = () => {
   const [heroRef, heroIn] = useInView(0.1);
   const [servicesRef, servicesIn] = useInView(0.05);
   const [profileRef, profileIn] = useInView(0.1);
+  const [casesRef, casesIn] = useInView(0.05);
   const [contactRef, contactIn] = useInView(0.05);
 
   const handleSubmit = () => {
@@ -64,7 +82,6 @@ const Index = () => {
         ref={heroRef}
         className="relative min-h-screen flex items-center navy-gradient overflow-hidden"
       >
-        {/* Decorative elements */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-[10%] right-[15%] w-72 h-72 rounded-full bg-primary/5 blur-3xl" />
           <div className="absolute bottom-[20%] left-[10%] w-96 h-96 rounded-full bg-primary/3 blur-3xl" />
@@ -86,25 +103,24 @@ const Index = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 pb-16">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left content */}
             <div className={`fade-up ${heroIn ? "visible" : ""} space-y-8`}>
               <div className="inline-flex items-center gap-2 bg-secondary/50 border border-border rounded-full px-4 py-2 text-xs text-muted-foreground">
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                서울 강남구 테헤란로 소재
+                강남구청역 도보 10분 거리
               </div>
 
               <div>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                  <span className="text-foreground">믿을 수 있는</span>
+                  <span className="text-foreground">평온한</span>
                   <br />
                   <span className="text-gold-gradient">세무 파트너</span>
                 </h1>
               </div>
 
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-lg">
-                15년 이상의 전문 경험으로 개인·법인 세무신고부터
-                절세 전략 수립까지, 복잡한 세금 문제를
-                명쾌하게 해결해 드립니다.
+                스타트업부터 중견기업, 상장사, 대기업 그룹사까지.
+                컨설팅, 조사 대응, 불복, 상속·증여 업무의
+                실전 경험으로 복잡한 세금 문제를 해결합니다.
               </p>
 
               <div className="flex flex-wrap gap-3">
@@ -123,22 +139,23 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Right card */}
             <div className={`fade-up delay-2 ${heroIn ? "visible" : ""}`}>
               <div className="glass-surface rounded-3xl p-8 space-y-6 animate-float">
                 <div className="flex items-center gap-4 pb-4 border-b border-border">
                   <span className="text-4xl">⚖️</span>
                   <div>
-                    <p className="font-serif font-bold text-lg text-foreground">이준혁 세무사 사무소</p>
-                    <p className="text-xs text-muted-foreground">공인 세무사 · 세무학 석사</p>
+                    <p className="font-serif font-bold text-lg text-foreground">세무회계평온</p>
+                    <p className="text-xs text-muted-foreground">김성열 대표세무사</p>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  {STATS.map((s) => (
-                    <div key={s.label} className="text-center py-3">
-                      <p className="text-2xl font-bold text-gold-gradient">{s.value}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{s.label}</p>
+                <div className="space-y-3">
+                  {CAREER.map((c) => (
+                    <div key={c.org} className="flex items-center gap-3">
+                      <span className="text-[10px] tracking-wider text-primary font-semibold bg-primary/10 px-2.5 py-1 rounded-full min-w-[28px] text-center">
+                        {c.period}
+                      </span>
+                      <span className="text-sm text-foreground">{c.org}</span>
                     </div>
                   ))}
                 </div>
@@ -146,8 +163,8 @@ const Index = () => {
                 <div className="flex items-center gap-3 bg-secondary/30 rounded-xl p-4">
                   <span className="text-xl">📞</span>
                   <div>
-                    <p className="text-xs text-muted-foreground">전화 상담</p>
-                    <p className="font-bold text-sm text-foreground">02-1234-5678</p>
+                    <p className="text-xs text-muted-foreground">대표 전화</p>
+                    <p className="font-bold text-sm text-foreground">02-866-5006</p>
                   </div>
                 </div>
               </div>
@@ -193,16 +210,15 @@ const Index = () => {
       <section id="profile" ref={profileRef} className="py-20 lg:py-28 bg-secondary/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left - Card */}
             <div className={`fade-up ${profileIn ? "visible" : ""}`}>
               <div className="bg-card border border-border rounded-3xl p-10 text-center">
                 <div className="w-28 h-28 rounded-full bg-secondary mx-auto mb-6 flex items-center justify-center">
                   <span className="text-5xl">👨‍💼</span>
                 </div>
-                <h3 className="font-serif font-bold text-2xl text-foreground mb-1">이준혁 세무사</h3>
-                <p className="text-sm text-muted-foreground mb-4">공인 세무사 | 세무학 석사</p>
+                <h3 className="font-serif font-bold text-2xl text-foreground mb-1">김성열 세무사</h3>
+                <p className="text-sm text-muted-foreground mb-4">세무회계평온 대표세무사</p>
                 <div className="flex flex-wrap justify-center gap-2">
-                  {["국세청 출신", "前 대형 세무법인", "세무사 협회 정회원"].map((t) => (
+                  {["한국과학영재고", "연세대학교", "前 좋은벗세무회계", "前 세무법인 호연"].map((t) => (
                     <span
                       key={t}
                       className="text-xs bg-primary/10 text-primary px-3 py-1.5 rounded-full font-medium"
@@ -214,34 +230,39 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Right - Content */}
             <div className={`fade-up delay-2 ${profileIn ? "visible" : ""} space-y-6`}>
               <p className="text-xs tracking-[3px] text-primary font-medium">ABOUT</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground leading-tight">
-                세금 문제,
+                김성열 대표세무사
                 <br />
-                저와 함께 해결하세요
+                <span className="text-primary">소개</span>
               </h2>
               <div className="accent-bar" />
               <p className="text-muted-foreground leading-relaxed">
-                국세청 근무 경험과 대형 세무법인에서 쌓은 15년 이상의 실전 경험을 바탕으로,
-                고객 한 분 한 분에게 맞춤화된 세무 솔루션을 제공합니다.
-                단순 신고 대행을 넘어 장기적인 절세 전략까지 함께 고민합니다.
+                좋은벗세무회계와 세무법인 호연에서 근무하며 스타트업부터 중견기업, 상장사, 대기업 그룹사를 대상으로
+                컨설팅 및 조사 대응, 불복, 상속·증여 업무를 수행하며 실제적인 경험을 쌓아왔습니다.
               </p>
 
               <div className="space-y-3">
-                {[
-                  ["🎓", "한국세무대학 세무학 석사"],
-                  ["🏛️", "국세청 조사국 근무 (5년)"],
-                  ["💼", "삼일 세무법인 시니어"],
-                  ["📜", "세무사 자격증 제12345호"],
-                ].map(([icon, text]) => (
+                {CAREER.map(({ period, org }) => (
                   <div
-                    key={text}
+                    key={org}
                     className="flex items-center gap-3 bg-card border border-border rounded-xl px-4 py-3"
                   >
-                    <span className="text-lg">{icon}</span>
-                    <span className="text-sm text-foreground">{text}</span>
+                    <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">
+                      {period}
+                    </span>
+                    <span className="text-sm text-foreground">{org}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="space-y-2 pt-2">
+                <p className="text-xs tracking-[2px] text-muted-foreground font-medium">학력</p>
+                {["한국과학영재고 졸업", "연세대학교 졸업"].map((edu) => (
+                  <div key={edu} className="flex items-center gap-3 bg-card border border-border rounded-xl px-4 py-3">
+                    <span className="text-lg">🎓</span>
+                    <span className="text-sm text-foreground">{edu}</span>
                   </div>
                 ))}
               </div>
@@ -257,6 +278,29 @@ const Index = () => {
         </div>
       </section>
 
+      {/* CASES */}
+      <section id="cases" ref={casesRef} className="py-20 lg:py-28 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`fade-up ${casesIn ? "visible" : ""} text-center mb-16`}>
+            <p className="text-xs tracking-[3px] text-primary font-medium mb-3">TRACK RECORD</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">주요 업무사례</h2>
+            <div className="accent-bar mx-auto mb-6" />
+          </div>
+
+          <div className={`fade-up delay-1 ${casesIn ? "visible" : ""} grid sm:grid-cols-2 lg:grid-cols-3 gap-4`}>
+            {CASES.map((c, i) => (
+              <div
+                key={i}
+                className="bg-card border border-border rounded-xl px-5 py-4 flex items-start gap-3"
+              >
+                <span className="text-primary mt-0.5">✓</span>
+                <span className="text-sm text-foreground leading-relaxed">{c}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CONTACT */}
       <section id="contact" ref={contactRef} className="py-20 lg:py-28 navy-gradient">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -265,7 +309,7 @@ const Index = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">무료 상담 신청</h2>
             <div className="accent-bar mx-auto mb-6" />
             <p className="text-muted-foreground">
-              첫 상담은 무료입니다. 24시간 이내 연락드리겠습니다.
+              방문 또는 전화 상담이 필요하신 경우, 아래로 연락주시면 친절하게 상담해드리겠습니다.
             </p>
           </div>
 
@@ -337,9 +381,9 @@ const Index = () => {
 
           <div className={`fade-up delay-2 ${contactIn ? "visible" : ""} grid grid-cols-3 gap-3 mt-8`}>
             {[
-              ["📞", "전화", "02-1234-5678"],
-              ["📧", "이메일", "tax@example.com"],
-              ["📍", "위치", "강남구 테헤란로 123"],
+              ["📞", "대표 전화", "02-866-5006"],
+              ["📱", "핸드폰", "010-9450-7458"],
+              ["📍", "위치", "강남구청역 도보 10분"],
             ].map(([icon, label, val]) => (
               <div key={label} className="glass-surface rounded-2xl p-4 text-center">
                 <p className="text-xl mb-1">{icon}</p>
@@ -355,10 +399,13 @@ const Index = () => {
       <footer className="bg-navy-deep border-t border-border py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
           <p className="text-xs text-muted-foreground">
-            이준혁 세무사 사무소 | 사업자등록번호: 123-45-67890 | 서울 강남구 테헤란로 123
+            세무회계평온 | 대표세무사 김성열 | 강남구청역 인근
+          </p>
+          <p className="text-xs text-muted-foreground">
+            T. 02-866-5006 | M. 010-9450-7458
           </p>
           <p className="text-xs text-muted-foreground/50">
-            © 2025 이준혁 세무사 사무소. All rights reserved.
+            © 2025 세무회계평온. All rights reserved.
           </p>
         </div>
       </footer>

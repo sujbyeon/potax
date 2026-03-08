@@ -87,7 +87,7 @@ const Header = () => {
             <span className="text-2xl">⚖️</span>
             <div className="flex flex-col">
               <span className="text-sm sm:text-base font-bold font-serif text-foreground leading-tight">
-                이준혁 세무사
+                세무회계평온
               </span>
               <span className="text-[10px] tracking-[2px] text-muted-foreground font-medium">
                 TAX CONSULTING
