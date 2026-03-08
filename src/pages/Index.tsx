@@ -400,7 +400,7 @@ const Index = () => {
       <footer className="bg-navy-deep border-t border-border py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
           <p className="text-xs text-muted-foreground">
-            세무회계 평온 | 대표세무사 김성열 | 강남구청역 인근
+            세무회계 평온 | 대표세무사 김성열 | 평온한 세법 가이드
           </p>
           <p className="text-xs text-muted-foreground">
             T. 02-866-5006 | M. 010-9450-7458
