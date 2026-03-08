@@ -332,77 +332,37 @@ const Index = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">상담 신청</h2>
             <div className="accent-bar mx-auto mb-6" />
             <p className="text-muted-foreground">
-              방문 또는 전화 상담이 필요하신 경우, 아래로 연락주시면 친절하게 상담해드리겠습니다.
+              전화 또는 문자로 편하게 상담을 신청하세요.
             </p>
           </div>
 
-          {submitted ? (
-            <div className={`fade-up delay-1 ${contactIn ? "visible" : ""} glass-surface rounded-3xl p-12 text-center space-y-4`}>
-              <span className="text-5xl block">✅</span>
-              <h3 className="text-2xl font-bold text-foreground">상담 신청이 완료되었습니다!</h3>
-              <p className="text-muted-foreground">빠른 시간 내에 연락드리겠습니다. 감사합니다. 😊</p>
-            </div>
-          ) : (
-            <div className={`fade-up delay-1 ${contactIn ? "visible" : ""} glass-surface rounded-3xl p-8 space-y-5`}>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {[
-                  ["name", "성함 *", "홍길동", "text"],
-                  ["phone", "연락처 *", "010-0000-0000", "tel"],
-                  ["email", "이메일", "example@email.com", "email"],
-                ].map(([k, l, p, t]) => (
-                  <div key={k} className={k === "email" ? "sm:col-span-2" : ""}>
-                    <label className="block text-xs text-muted-foreground mb-2 font-medium">{l}</label>
-                    <input
-                      type={t}
-                      placeholder={p}
-                      value={form[k as keyof typeof form]}
-                      onChange={(e) => setForm({ ...form, [k]: e.target.value })}
-                      className="w-full bg-secondary/30 border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
-                    />
-                  </div>
-                ))}
-                <div className="sm:col-span-2">
-                  <label className="block text-xs text-muted-foreground mb-2 font-medium">상담 유형</label>
-                  <select
-                    value={form.type}
-                    onChange={(e) => setForm({ ...form, type: e.target.value })}
-                    className="w-full bg-secondary/30 border border-border rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all appearance-none"
-                  >
-                    <option value="" className="bg-card text-foreground">선택해주세요</option>
-                    {["종합소득세", "법인세", "기장 대행", "양도·상속·증여세", "세무조사 대응", "재개발 재건축 컨설팅", "기타"].map(
-                      (o) => (
-                        <option key={o} value={o} className="bg-card text-foreground">{o}</option>
-                      )
-                    )}
-                  </select>
-                </div>
-              </div>
+          <div className={`fade-up delay-1 ${contactIn ? "visible" : ""} grid sm:grid-cols-2 gap-4 mb-8`}>
+            <a
+              href="tel:010-9450-7458"
+              className="glass-surface rounded-2xl p-8 text-center hover:border-primary/40 border border-transparent transition-all hover:-translate-y-1 block"
+            >
+              <span className="text-4xl block mb-3">📞</span>
+              <h3 className="font-bold text-lg text-foreground mb-1">전화 상담</h3>
+              <p className="text-sm text-muted-foreground mb-4">바로 전화 연결됩니다</p>
+              <span className="inline-block gold-gradient text-primary-foreground border-0 rounded-xl px-6 py-3 font-bold text-sm">
+                010-9450-7458
+              </span>
+            </a>
 
-              <div>
-                <label className="block text-xs text-muted-foreground mb-2 font-medium">문의 내용</label>
-                <textarea
-                  placeholder="궁금하신 내용을 자유롭게 적어주세요"
-                  value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  rows={4}
-                  className="w-full bg-secondary/30 border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-vertical"
-                />
-              </div>
+            <a
+              href="sms:010-9450-7458"
+              className="glass-surface rounded-2xl p-8 text-center hover:border-primary/40 border border-transparent transition-all hover:-translate-y-1 block"
+            >
+              <span className="text-4xl block mb-3">💬</span>
+              <h3 className="font-bold text-lg text-foreground mb-1">문자 상담</h3>
+              <p className="text-sm text-muted-foreground mb-4">문자로 문의해주세요</p>
+              <span className="inline-block bg-secondary text-foreground border border-border rounded-xl px-6 py-3 font-bold text-sm">
+                010-9450-7458
+              </span>
+            </a>
+          </div>
 
-              <button
-                onClick={handleSubmit}
-                className="w-full gold-gradient text-primary-foreground border-0 rounded-xl py-4 cursor-pointer font-bold text-sm hover:opacity-90 transition-opacity"
-              >
-                상담 신청하기
-              </button>
-
-              <p className="text-[11px] text-muted-foreground/40 text-center">
-                입력하신 정보는 상담 목적으로만 사용되며 안전하게 보호됩니다.
-              </p>
-            </div>
-          )}
-
-          <div className={`fade-up delay-2 ${contactIn ? "visible" : ""} grid grid-cols-3 gap-3 mt-8`}>
+          <div className={`fade-up delay-2 ${contactIn ? "visible" : ""} grid grid-cols-3 gap-3`}>
             {[
               ["📞", "대표 전화", "02-866-5006"],
               ["📱", "핸드폰", "010-9450-7458"],
