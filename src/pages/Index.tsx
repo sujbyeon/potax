@@ -129,7 +129,7 @@ const Index = () => {
                   onClick={() => scrollTo("contact")}
                   className="gold-gradient text-primary-foreground border-0 rounded-xl px-7 py-4 cursor-pointer font-bold text-sm hover:opacity-90 transition-opacity"
                 >
-                  무료 상담 신청하기
+                  상담 신청하기
                 </button>
                 <button
                   onClick={() => scrollTo("services")}
