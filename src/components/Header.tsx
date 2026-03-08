@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import logoImg from "@/assets/logo-pyeongon.png";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -84,7 +85,7 @@ const Header = () => {
               scrollTo("home");
             }}
           >
-            <span className="text-2xl">⚖️</span>
+            <img src={logoImg} alt="세무회계 평온 로고" className="w-9 h-9 object-contain" />
             <div className="flex flex-col">
               <span className="text-sm sm:text-base font-bold font-serif text-foreground leading-tight">
                 세무회계 평온
