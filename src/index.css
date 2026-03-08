@@ -132,7 +132,7 @@
 
   /* Accent bar */
   .accent-bar {
-    @apply w-16 h-1 rounded-full;
+    @apply w-28 h-1 rounded-full;
     background: linear-gradient(90deg, hsl(var(--gold)), hsl(var(--gold-light)), transparent);
   }
 
